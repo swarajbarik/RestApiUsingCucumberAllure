@@ -1,0 +1,137 @@
+{
+  "uid" : "723106e37587395a",
+  "name" : "Get Books",
+  "fullName" : "Books Controller: Get Books",
+  "historyId" : "9c288777678b0390456aa62d60a55a6a",
+  "time" : {
+    "start" : 1690435872282,
+    "stop" : 1690435874394,
+    "duration" : 2112
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given  i have the end point \"Books\"",
+      "time" : {
+        "start" : 1690435872284,
+        "stop" : 1690435872296,
+        "duration" : 12
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When  i am executing the \"GET\" method",
+      "time" : {
+        "start" : 1690435872297,
+        "stop" : 1690435874368,
+        "duration" : 2071
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then  i should see the status code as \"200\"",
+      "time" : {
+        "start" : 1690435874369,
+        "stop" : 1690435874369,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And  the response should contain the below details",
+      "time" : {
+        "start" : 1690435874369,
+        "stop" : 1690435874392,
+        "duration" : 23
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "655e86f2038e40dd",
+        "name" : "Data table",
+        "source" : "655e86f2038e40dd.csv",
+        "type" : "text/tab-separated-values",
+        "size" : 76
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "fv-az507-685"
+  }, {
+    "name" : "thread",
+    "value" : "1844@fv-az507-685.main(1)"
+  }, {
+    "name" : "feature",
+    "value" : "Books Controller"
+  }, {
+    "name" : "story",
+    "value" : "Get Books"
+  }, {
+    "name" : "suite",
+    "value" : "Books Controller"
+  }, {
+    "name" : "testClass",
+    "value" : "Get Books"
+  }, {
+    "name" : "framework",
+    "value" : "cucumber4jvm"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "gherkin_uri",
+    "value" : "classpath:features/GetBooks.feature"
+  }, {
+    "name" : "package",
+    "value" : "features.GetBooks_feature.Books Controller"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "723106e37587395a.json",
+  "parameterValues" : [ ]
+}

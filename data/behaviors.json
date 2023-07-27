@@ -1,0 +1,25 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "children" : [ {
+    "name" : "Books Controller",
+    "children" : [ {
+      "name" : "Get Books",
+      "children" : [ {
+        "name" : "Get Books",
+        "uid" : "723106e37587395a",
+        "parentUid" : "6a593139f687e4be38b6b12cc683c7cd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1690435872282,
+          "stop" : 1690435874394,
+          "duration" : 2112
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "6a593139f687e4be38b6b12cc683c7cd"
+    } ],
+    "uid" : "6ba4e9fd1758646489b67260acf4c285"
+  } ],
+  "name" : "behaviors"
+}

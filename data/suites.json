@@ -1,0 +1,21 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "children" : [ {
+    "name" : "Books Controller",
+    "children" : [ {
+      "name" : "Get Books",
+      "uid" : "723106e37587395a",
+      "parentUid" : "3f5a49df207caf747d2d08e0ee1a4a61",
+      "status" : "passed",
+      "time" : {
+        "start" : 1690435872282,
+        "stop" : 1690435874394,
+        "duration" : 2112
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "3f5a49df207caf747d2d08e0ee1a4a61"
+  } ],
+  "name" : "suites"
+}
