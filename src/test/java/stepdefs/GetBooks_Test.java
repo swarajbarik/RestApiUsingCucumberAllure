@@ -2,17 +2,18 @@ package stepdefs;
 
 import java.net.URISyntaxException;
 
+import org.testng.Assert;
+
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
-import utility.RestAssuredUtility1;
+import utility.RestAssuredUtility;
 
 public class GetBooks_Test {
-	RestAssuredUtility1 restAssuredUtility = new RestAssuredUtility1("https://demoqa.com/BookStore/v1/");
+	RestAssuredUtility restAssuredUtility = new RestAssuredUtility("https://demoqa.com/BookStore/v1/");
 	Response response;
-	
 	@Given("i have the end point {string}")
 	public void i_have_the_end_point(String endPoint) throws URISyntaxException {
 		restAssuredUtility.buildUrl(endPoint);
@@ -24,8 +25,9 @@ public class GetBooks_Test {
 	}
 
 	@Then("i should see the status code as {string}")
-	public void i_should_see_the_status_code_as(String string) {
+	public void i_should_see_the_status_code_as(String res) {
 		System.out.println(response.statusCode());
+		Assert.assertEquals("200", res);
 	}
 
 	@Then("the response should contain the below details")

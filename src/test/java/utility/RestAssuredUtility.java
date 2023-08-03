@@ -1,55 +1,76 @@
 package utility;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.Map;
 
+import io.qameta.allure.Allure;
 import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class RestAssuredUtility {
-    private String baseUrl;
+	private String baseUrl;
+	private Map<String, Object> defaultHeaders;
+	private URI url;
 
-    public RestAssuredUtility(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
+	public RestAssuredUtility(String baseUrl) {
+		this.baseUrl = baseUrl;
+		defaultHeaders = new HashMap<String, Object>();
+		defaultHeaders.put("Content-Type", "application/json");
+	}
 
-    public String buildUrl(String endpoint) {
-        return baseUrl + endpoint;
-    }
+	public URI buildUrl(String endpoint) throws URISyntaxException {
+		URI url = new URI(baseUrl + endpoint);
+		this.url = url;
+		return url;
+	}
 
-    public Response sendRequest(String method, String endpoint, Map<String, String> headers, String body) {
-        RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
-        requestSpecBuilder.setBaseUri(baseUrl)
-                .setBasePath(endpoint)
-                .addHeaders(headers);
+	public Response sendRequest(String method, Map<String, Object> pathParams, Map<String, Object> queryParams,
+			Map<String, Object> headers, String body) {
+		RequestSpecification requestSpecBuilder;
+		if (headers != null) {
+			requestSpecBuilder = RestAssured.given().headers(headers);
+		} else {
+			requestSpecBuilder = RestAssured.given().headers(defaultHeaders);
+		}
 
-        if (!headers.isEmpty()) {
-            requestSpecBuilder.addHeaders(headers);
-        }
+		if (queryParams != null && !queryParams.isEmpty()) {
+			requestSpecBuilder.queryParams(queryParams);
+		}
 
-        if (body != null) {
-            requestSpecBuilder.setBody(body);
-        }
+		if (pathParams != null && !pathParams.isEmpty()) {
+			requestSpecBuilder.pathParams(pathParams);
+		}
 
-        Response response;
-        switch (method) {
-            case "GET":
-                response = RestAssured.given(requestSpecBuilder.build()).get();
-                break;
-            case "POST":
-                response = RestAssured.given(requestSpecBuilder.build()).post();
-                break;
-            case "PUT":
-                response = RestAssured.given(requestSpecBuilder.build()).put();
-                break;
-            case "DELETE":
-                response = RestAssured.given(requestSpecBuilder.build()).delete();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid HTTP method: " + method);
-        }
+		if (body != null) {
+			requestSpecBuilder.body(body);
+		}
+		Allure.addAttachment("Request Details",
+                "Request URI: " + url + "\n" +
+                "Request Method: " + method + "\n" +
+                "Request Body: " + body);
+		Response response;
+		switch (method) {
+		case "GET":
+			response = requestSpecBuilder.get(url);
+			break;
+		case "POST":
+			response = requestSpecBuilder.post(url);
+			break;
+		case "PUT":
+			response = requestSpecBuilder.put(url);
+			break;
+		case "DELETE":
+			response = requestSpecBuilder.delete(url);
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid HTTP method: " + method);
+		}
 
-        return response;
-    }
-
+		 Allure.addAttachment("Response Details", "Status Code: " + response.getStatusCode() + "\n" +
+	                "Response Body: " + response.getBody().asString());
+		return response;
+	}
 }
