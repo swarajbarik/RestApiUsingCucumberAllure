@@ -18,8 +18,9 @@ pipeline {
 
         stage('Generate Allure Report') {
             steps {
-                // Generate Allure report
-                bat "mvn allure:report"
+					catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    bat "mvn allure:report"
+                }
             }
         }
 
@@ -32,6 +33,22 @@ pipeline {
                     properties: [],
                     reportBuildPolicy: 'ALWAYS',
                     results: [[path: 'target/allure-results']]
+                ])
+            }
+        }
+        
+        stage('Publish HTML Report') {
+            steps {
+                // Archive the HTML report
+                archiveArtifacts artifacts: 'target\\site\\allure-maven-plugin\\*'
+                
+                // Publish the HTML report using the HTML Publisher Plugin
+                publishHTML(target: [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'target\\site\\allure-maven-plugin',
+                    reportFiles: 'index.html',
                 ])
             }
         }
