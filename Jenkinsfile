@@ -20,7 +20,7 @@ pipeline {
 
         stage('Generate Allure Report') {
             steps {
-                    bat './mvnw allure:report'
+                    bat 'mvnw allure:report'
             }
         }
 
