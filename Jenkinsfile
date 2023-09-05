@@ -12,7 +12,8 @@ pipeline {
         stage('Build and Test') {
             steps {
                  catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                 bat "mvn clean test"
+                 bat "mvn clean install"
+                 bat "mvn test"
                 }
             }
         }
