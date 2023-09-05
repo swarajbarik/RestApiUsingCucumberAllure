@@ -12,14 +12,14 @@ pipeline {
         stage('Build and Test') {
             steps {
                 // Build and test using Maven
-                sh "mvn clean test"
+                mvn clean test
             }
         }
 
         stage('Generate Allure Report') {
             steps {
                 // Generate Allure report
-                sh "mvn allure:report"
+                mvn allure:report
             }
         }
 
