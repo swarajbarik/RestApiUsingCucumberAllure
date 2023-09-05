@@ -20,23 +20,11 @@ pipeline {
 
         stage('Generate Allure Report') {
             steps {
-                    bat 'mvnw allure:report'
+                    bat "mvn allure:report"
             }
         }
 
-        stage('Publish Allure Report') {
-            steps {
-                // Publish Allure report
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    properties: [],
-                    reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'target/allure-results']]
-                ])
-            }
-        }
-        
+    
         stage('Publish HTML Report') {
             steps {
                 // Archive the HTML report
