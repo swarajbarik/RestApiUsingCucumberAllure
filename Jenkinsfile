@@ -11,16 +11,15 @@ pipeline {
 
         stage('Build and Test') {
             steps {
-                // Build and test using Maven
-                bat "mvn clean test"
+                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 bat "mvn clean test"
+                }
             }
         }
 
         stage('Generate Allure Report') {
             steps {
-					catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     bat "mvn allure:report"
-                }
             }
         }
 
